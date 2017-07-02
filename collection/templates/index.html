@@ -1,13 +1,13 @@
-{% load staticfiles %}
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+    Homepage - {{ block.super }}
+{% endblock %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Hello Web App Project</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% block content %}
     <h1>Hello, World!</h1>
-    <p>I am a basic website.</p>
-</body>
-</html>
+    {% comment %}
+    <p>There are {{ number|apnumber }} cat{{ number|pluralize}}!</p>
+    {% endcomment %}
+    <p>This is my name: {{ name|truncatewords:1|title }}</p>
+{% endblock %}

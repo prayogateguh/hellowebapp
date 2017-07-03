@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
+from collection.models import Thing
+
 def index(request):
-    number = 5
-    name = "prayoga teguh"
-    return render(request, 'index.html', {'number': number, 'name': name,})
+    things = Thing.objects.all()
+    #thing = Thing.objects.filter(name__startswith='Prayoga')
+
+    return render(request, 'index.html', {'things': things,})

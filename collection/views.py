@@ -7,3 +7,10 @@ def index(request):
     #thing = Thing.objects.filter(name__startswith='Prayoga')
 
     return render(request, 'index.html', {'things': things,})
+
+def thing_detail(request, slug):
+    # grab the object
+    thing = Thing.objects.get(slug=slug)
+
+    # pass to the template
+    return render(request, 'things/thing_detail.html', {'thing': thing,})

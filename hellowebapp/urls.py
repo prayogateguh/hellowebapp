@@ -10,6 +10,7 @@ from django.contrib.auth.views import (
 )
 
 from collection import views
+from collection.backends import MyRegistrationView
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
@@ -39,7 +40,8 @@ urlpatterns = [
         {'template_name':
         'registration/password_reset_complete.html'},
         name="password_reset_complete"),
-
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name="registration_register"),
+    url(r'^accounts/create_thing/$', views.create_thing, name="registration_create_thing"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 ]

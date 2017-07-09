@@ -70,3 +70,12 @@ def create_thing(request):
         form = form_class
 
     return render(request, 'things/create_thing.html', {'form': form,})
+
+def browse_by_name(request, initial=None):
+    if initial:
+        things = Thing.objects.filter(name__startswith=initial)
+        things = things.order_by('name')
+    else:
+        things = Thing.objects.all().order_by('name')
+
+    return render(request, 'search/search.html', {'things': things, 'initial': initial,})
